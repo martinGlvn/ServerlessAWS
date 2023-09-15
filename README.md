@@ -12,6 +12,6 @@
 
 ---
 
-`1. npm install -g serverless`
-`2. serverless create --template aws-nodejs --path my-sls-project`
-`3. npm install -g serverless`
+1. npm install -g serverless
+2. serverless create --template aws-nodejs --path my-sls-project
+3. npm install -g serverless
