@@ -7,6 +7,8 @@
 | Api Gateway               | https://aws.amazon.com/es/api-gateway/ |
 | Lambda                    | https://aws.amazon.com/es/lambda/      |
 | DynamoDB                  | https://aws.amazon.com/es/dynamodb/    |
+| Cognito                   | https://aws.amazon.com/es/cognito/     |
+| NodeJS                    | https://nodejs.org/es                  |
 
 <u>Services aws</u>
 
