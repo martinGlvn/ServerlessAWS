@@ -1,6 +1,6 @@
 # ServerlessAWS
 
-![Texto alternativo](./Diagram.png)
+![Texto alternativo](./img/Diagram.png)
 
 | Services aws -----------> | _API_                                  |
 | ------------------------- | -------------------------------------- |
