@@ -10,10 +10,10 @@
 | Cognito                   | https://aws.amazon.com/es/cognito/     |
 | NodeJS                    | https://nodejs.org/es                  |
 
-<u>Services aws</u>
-
 ---
 
 1. npm install -g serverless
 2. serverless create --template aws-nodejs --path my-sls-project
 3. npm install -g serverless
+4. serverless config credentials
+5.
