@@ -1,12 +1,12 @@
 const documentClient = require("../utils/database");
-const TASKS_TABLE_NAME = process.env.TASKS_TABLE_NAME;
+const TASK_TABLE_NAME = process.env.TASK_TABLE_NAME;
 
 //
 module.exports.handler = async (event, context, callback) => {
   const data = JSON.parse(event.body);
   try {
     const params = {
-      TableName: TASKS_TABLE_NAME,
+      TableName: TASK_TABLE_NAME,
       Item: {
         id: data.id,
         title: data.title,
