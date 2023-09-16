@@ -1,6 +1,7 @@
 service: taskApi
 frameworkVersion: "3"
 
+# AWS ->
 provider:
   name: aws
   runtime: nodejs18.x
@@ -9,6 +10,7 @@ provider:
   memorySize: 128
   logRetentionInDays: 1
 
+# Api Serverless -> get, create, update
 functions:
   getTask:
     handler: src/handlers/getTask.handler
@@ -28,3 +30,7 @@ functions:
       - httpApi:
           path: /task/{id}
           method: put
+
+# DynamoDB ->
+resources:
+  Resources:
