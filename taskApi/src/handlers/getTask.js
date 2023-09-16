@@ -1,12 +1,12 @@
 const documentClient = require("../utils/database");
 const response = require("../utils/response");
 
-const TASKS_TABLE_NAME = process.env.TASKS_TABLE_NAME;
+const TASK_TABLE_NAME = process.env.TASK_TABLE_NAME;
 module.exports.handler = async (event, context, callback) => {
   context.callbackWaitsForEmptyEventLoop = false;
   try {
     const params = {
-      TableName: TASKS_TABLE_NAME,
+      TableName: TASK_TABLE_NAME,
     };
     const notes = await documentClient.scan(params).promise();
     callback(null, response.send(200, notes));
