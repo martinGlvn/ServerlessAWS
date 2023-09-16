@@ -1,7 +1,7 @@
 service: taskApi
 frameworkVersion: "3"
 
-# AWS ->
+# AWS, IAM, ENV->
 provider:
   name: aws
   runtime: nodejs18.x
@@ -24,6 +24,11 @@ functions:
           method: get
   createTask:
     handler: src/handlers/createTask.handler
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:PutItem
+        Resource: !GetAtt TaskTable.Arn
     events:
       - httpApi:
           path: /task
@@ -34,9 +39,16 @@ functions:
       - httpApi:
           path: /task/{id}
           method: put
+  #
+  plugins:
+    - serverless-iam-roles-per-function
+    - serverless-plugin-include-dependencies
 
 # DynamoDB, Cognito ->
 resources:
   Resources:
     TasksTable: ${file(resources/TaskTable.yml):TaskTable}
 #
+
+plugins:
+  - serverless-iam-roles-per-function
