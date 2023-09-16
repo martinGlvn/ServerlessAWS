@@ -9,6 +9,10 @@ provider:
   region: ${opt:region, 'us-west-2'}
   memorySize: 128
   logRetentionInDays: 1
+  environment:
+    TASKS_TABLE_NAME: !Ref TaskTable
+    REGION: ${self:provider.region}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
 
 # Api Serverless -> get, create, update
 functions:
@@ -31,6 +35,8 @@ functions:
           path: /task/{id}
           method: put
 
-# DynamoDB ->
+# DynamoDB, Cognito ->
 resources:
   Resources:
+    TasksTable: ${file(resources/TaskTable.yml):TaskTable}
+#
