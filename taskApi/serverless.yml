@@ -40,6 +40,11 @@ functions:
           method: post
   updateTask:
     handler: src/handlers/updateTask.handler
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:UpdateItem
+        Resource: !GetAtt TaskTable.Arn
     events:
       - httpApi:
           path: /task/{id}
