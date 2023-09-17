@@ -18,6 +18,11 @@ provider:
 functions:
   getTask:
     handler: src/handlers/getTask.handler
+    iamRoleStatements:
+      - Effect: "Allow"
+        Action:
+          - dynamodb:Scan
+        Resource: !GetAtt TaskTable.Arn
     events:
       - httpApi:
           path: /task
