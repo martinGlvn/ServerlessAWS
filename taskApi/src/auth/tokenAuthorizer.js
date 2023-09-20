@@ -1,6 +1,5 @@
 exports.handler = (event, context, callback) => {
   const token = event.headers.authorization;
-
   console.log(`Token Received: ${token} , Event Route ARN: ${event.routeArn}`);
 
   if (token === "user-allow") {
