@@ -4,10 +4,12 @@ const TASK_TABLE_NAME = process.env.TASK_TABLE_NAME;
 
 //
 module.exports.handler = async (event, context, callback) => {
+  // ->
   context.callbackWaitsForEmptyEventLoop = false;
   const id = Number.parseInt(event.pathParameters.id);
   const data = JSON.parse(event.body);
   console.log(`Update Note received for id : ${id}`);
+  // ->
   try {
     const params = {
       TableName: TASK_TABLE_NAME,
