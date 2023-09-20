@@ -1,7 +1,7 @@
 service: taskApi
 frameworkVersion: "3"
 
-# AWS, IAM, ENV->
+# AWS, IAM, ENV ->
 provider:
   name: aws
   runtime: nodejs18.x
@@ -13,9 +13,19 @@ provider:
     TASKS_TABLE_NAME: !Ref TaskTable
     REGION: ${self:provider.region}
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    httpApi:
+    authorizers:
+      tokenAuth:
+        type: request
+        identitySource:
+          - $request.header.Authorization
+        functionName: tokenAuthorizer
 
 # Api Serverless -> get, create, update
 functions:
+  # auth
+  tokenAuthorizer:
+    handler: src/auth/tokenAuthorizer.js
   getTask:
     handler: src/handlers/getTask.handler
     iamRoleStatements:
@@ -27,6 +37,7 @@ functions:
       - httpApi:
           path: /task
           method: get
+          authorizer: tokenAuth
   createTask:
     handler: src/handlers/createTask.handler
     iamRoleStatements:
@@ -38,6 +49,7 @@ functions:
       - httpApi:
           path: /task
           method: post
+          authorizer: tokenAuth
   updateTask:
     handler: src/handlers/updateTask.handler
     iamRoleStatements:
@@ -49,6 +61,7 @@ functions:
       - httpApi:
           path: /task/{id}
           method: put
+          authorizer: tokenAuth
   #
   plugins:
     - serverless-iam-roles-per-function
