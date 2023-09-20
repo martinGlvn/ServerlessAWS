@@ -3,6 +3,7 @@ const TASK_TABLE_NAME = process.env.TASK_TABLE_NAME;
 
 //
 module.exports.handler = async (event, context, callback) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   const data = JSON.parse(event.body);
   try {
     const params = {
